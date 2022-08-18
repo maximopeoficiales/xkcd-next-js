@@ -12,7 +12,7 @@ const Home = ({ }: MyProps) => {
         <Head>
           <title>XKCD COMICS</title>
         </Head>
-        
+        <p className='font-bold'>assd</p>
         <Container>
           <Card css={{ $$cardColor: '$colors$primary' }}>
             <Card.Body>

@@ -5,12 +5,13 @@ interface MyProps {
 }
 const Header = ({ }: MyProps) => {
     return (
-        <header className="flex justify-between items-center p-4 bg-gray-800">
+        <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
             <div className="">
                 <h1 className="font-bold">Next <span className="font-light">XKCD</span></h1>
             </div>
             <nav>
                 <Container
+                    className="text-white"
                     as="ul"
                     display="flex"
                     direction="row"
