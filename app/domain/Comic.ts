@@ -11,4 +11,6 @@ export interface Comic {
     transcript: string;
     year: string;
     id: number;
+    width: number;
+    height: number
 }
