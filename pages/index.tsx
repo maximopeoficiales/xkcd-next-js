@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import { Link } from "@nextui-org/react";
 import PageLayout from '@/ui/components/PageLayout';
 import fs from "fs/promises";
-import { GetStaticProps,} from 'next';
+import { GetStaticProps, } from 'next';
 import { Comic } from '@/domain/Comic';
 import Image from 'next/image';
+import Link from 'next/link';
 interface MyProps {
   latestComics: Comic[]
 }
@@ -23,7 +23,7 @@ const Home = ({ latestComics }: MyProps) => {
             latestComics.map(comic => (
               <Link key={comic.id} href={`/comic/${comic.id}`}
               >
-                <div className="pb-4 mb-4">
+                <a className="pb-4 mb-4">
                   <h3 className="text-sm font-bold text-center">{comic.title}</h3>
 
                   <Image
@@ -37,7 +37,7 @@ const Home = ({ latestComics }: MyProps) => {
                   // objectFit='contain'
                   />
 
-                </div>
+                </a>
 
               </Link>
             ))
