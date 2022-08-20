@@ -11,7 +11,7 @@ const PageLayout = ({ children, title = "I love Cats" }: MyProps) => {
             <Head>
                 <title>{title}</title>
                 <meta name="description" content="The best cat app in the world" />
-                <link rel="icon" href="/cat.ico" />
+                {/* <link rel="icon" href="/cat.ico" /> */}
             </Head>
             <Header />
             <main>

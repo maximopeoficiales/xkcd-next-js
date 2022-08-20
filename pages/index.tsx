@@ -1,31 +1,45 @@
 import Head from 'next/head'
-import { Container, Card, Row, Text } from "@nextui-org/react";
+import { Container, Card, Row, Text, Link } from "@nextui-org/react";
 import PageLayout from '@/ui/components/PageLayout';
-
+import fs from "fs/promises";
+import { GetStaticProps, GetStaticPropsContext } from 'next';
+import { Comic } from '@/domain/Comic';
+import Image from 'next/image';
 interface MyProps {
-
+  latestComics: Comic[]
 }
-const Home = ({ }: MyProps) => {
+const Home = ({ latestComics }: MyProps) => {
+  console.log(latestComics);
+
   return (
     <PageLayout>
       <div>
         <Head>
           <title>XKCD COMICS</title>
         </Head>
-        <p className='font-bold'>assd</p>
-        <Container>
-          <Card css={{ $$cardColor: '$colors$primary' }}>
-            <Card.Body>
-              <Row justify="center" align="center">
-                <Text h6 size={15} color="white" css={{ m: 0 }}>
-                  NextUI gives you the best developer experience with all the features
-                  you need for building beautiful and modern websites and
-                  applications.
-                </Text>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Container>
+        <h2 className="text-3xl font-bold text-center">Latest Comics</h2>
+        <section className="grid max-w-md grid-cols-1 gap-4 m-auto sm:grid-cols-2">
+          {
+            latestComics.map(comic => (
+              <Link key={comic.id} href={`/comic/${comic.id}`}
+              >
+                <a className="pb-4 mb-4">
+                  <h3 className="text-sm font-bold text-center">{comic.title}</h3>
+                  <Image
+                    src={comic.img}
+                    alt={comic.alt}
+                    height={300}
+                    width={300}
+                    layout="intrinsic"
+                    objectFit='contain'
+                  />
+                </a>
+
+              </Link>
+            ))
+
+          }
+        </section>
 
       </div>
     </PageLayout>
@@ -33,6 +47,25 @@ const Home = ({ }: MyProps) => {
 }
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const files = await fs.readdir("./comics");
+  const latestComicsFiles = files.slice(-8, files.length);
+
+  const promisesReadFiles = latestComicsFiles.map(async (file) => {
+    const content = await fs.readFile(`./comics/${file}`, 'utf8');
+    return JSON.parse(content);
+  });
+
+  const latestComics = await Promise.all(promisesReadFiles);
+  // console.log(latestComics);
+
+  return {
+    props: {
+      latestComics
+    }
+  }
+}
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const cats = await catApiServiceInstance.getCats();
