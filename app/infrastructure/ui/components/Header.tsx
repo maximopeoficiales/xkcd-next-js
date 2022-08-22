@@ -1,21 +1,18 @@
-import { Container, Text } from "@nextui-org/react";
+import { Container} from "@nextui-org/react";
 import Link from "next/link";
 
 interface MyProps {
 }
 const Header = ({ }: MyProps) => {
     return (
-        <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
+        <header className="flex items-center justify-between p-4">
             <div className="">
                 <h1 className="font-bold">Next <span className="font-light">XKCD</span></h1>
             </div>
             <nav>
                 <Container
-                    className="text-white"
+                    className="flex justify-between gap-4"
                     as="ul"
-                    display="flex"
-                    direction="row"
-                    gap={4}
                     responsive
                     style={{ listStyle: "none" }}
                 >

@@ -1,51 +1,50 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head'
-import PageLayout from '@/ui/components/PageLayout';
-import fs from "fs/promises";
-import { GetStaticProps, } from 'next';
-import { Comic } from '@/domain/Comic';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import PageLayout from '@/ui/components/PageLayout';
+import { Comic } from '@/domain/Comic';
+
+import fs from "fs/promises";
 interface MyProps {
   latestComics: Comic[]
 }
 const Home = ({ latestComics }: MyProps) => {
-  console.log(latestComics);
+  // console.log(latestComics);
 
   return (
     <PageLayout>
-      <div>
-        <Head>
-          <title>XKCD COMICS</title>
-        </Head>
-        <h2 className="text-3xl font-bold text-center">Latest Comics</h2>
-        <section className="grid max-w-md grid-cols-1 gap-4 m-auto sm:grid-cols-2">
-          {
-            latestComics.map(comic => (
-              <Link key={comic.id} href={`/comic/${comic.id}`}
-              >
-                <a className="pb-4 mb-4">
-                  <h3 className="text-sm font-bold text-center">{comic.title}</h3>
+      <Head>
+        <title>XKCD COMICS</title>
+      </Head>
+      <h2 className="text-3xl font-bold text-center">Latest Comics</h2>
+      <section className="grid max-w-md grid-cols-1 gap-4 m-auto sm:grid-cols-2">
+        {
+          latestComics.map(comic => (
+            <Link key={comic.id} href={`/comic/${comic.id}`}
+            >
+              <a className="pb-4 mb-4">
+                <h3 className="text-sm font-bold text-center">{comic.title}</h3>
 
-                  <Image
-                    src={comic.img}
-                    alt={comic.alt}
-                    height={comic.height}
-                    width={comic.width}
-                  // height={300}
-                  // width={300}
-                  // layout="intrinsic"
-                  // objectFit='contain'
-                  />
+                <Image
+                  src={comic.img}
+                  alt={comic.alt}
+                  height={comic.height}
+                  width={comic.width}
+                // height={300}
+                // width={300}
+                // layout="intrinsic"
+                // objectFit='contain'
+                />
 
-                </a>
+              </a>
 
-              </Link>
-            ))
+            </Link>
+          ))
 
-          }
-        </section>
-
-      </div>
+        }
+      </section>
     </PageLayout>
   )
 }

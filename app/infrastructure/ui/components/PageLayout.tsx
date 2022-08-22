@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Footer from "./Footer";
 import Header from "./Header";
 
 interface MyProps {
@@ -17,6 +18,7 @@ const PageLayout = ({ children, title = "I love Cats" }: MyProps) => {
             <main>
                 {children}
             </main>
+            <Footer />
         </>
     )
 }

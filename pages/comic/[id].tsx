@@ -1,10 +1,12 @@
-import { Comic } from "@/domain/Comic";
-import PageLayout from "@/ui/components/PageLayout";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import fs from "fs/promises";
 import Link from "next/link";
+
+import PageLayout from "@/ui/components/PageLayout";
+import { Comic } from "@/domain/Comic";
+
+import fs from "fs/promises";
 import { basename } from "path";
 
 interface MyProps {
@@ -15,21 +17,24 @@ interface MyProps {
     nextId: number;
 }
 
-const ComicId = ({ comic: { title, alt, img, height, width }, hasNext, hasPrevious, prevId, nextId }: MyProps) => {
+const ComicId = ({ comic: { title, alt, img, height, width, safe_title }, hasNext, hasPrevious, prevId, nextId }: MyProps) => {
     return (
         <PageLayout>
             <Head>
-                <title>XKCD COMICS FOR DEVELOPERS</title>
+                <title>{safe_title}</title>
             </Head>
             <section className="max-w-lg m-auto">
-                <h1 className="font-bold text-center">{title}</h1>
-                <Image
-                    layout="responsive"
-                    src={img}
-                    alt={alt}
-                    height={height}
-                    width={width}
-                />
+                <h1 className="mb-4 text-xl font-bold text-center">{title}</h1>
+                <div className="max-w-xs m-auto mb-4">
+
+                    <Image
+                        layout="responsive"
+                        src={img}
+                        alt={alt}
+                        height={height}
+                        width={width}
+                    />
+                </div>
                 <p>{alt}</p>
                 <div className="flex justify-between font-bold">
                     {
