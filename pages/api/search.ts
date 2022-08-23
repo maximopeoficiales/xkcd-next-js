@@ -8,8 +8,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const hits = await comicSearchServiceInstance.search(req.query.q as string, {
-    hitsPerPage: 10,
-  })
+  const hits = await comicSearchServiceInstance.search(req.query.q as string)
   res.status(200).json(hits)
 }

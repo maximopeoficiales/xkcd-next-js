@@ -29,7 +29,7 @@ export interface HighlightResult {
     title: Title;
 }
 
-export interface ComicSearchResponse {
+export interface ComicSearch {
     id: number;
     height: number;
     width: number;

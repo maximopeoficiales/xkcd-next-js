@@ -1,6 +1,6 @@
 import { config } from '@/config';
 import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch/lite';
-import { ComicSearchResponse, OptionsAlgolia } from '@/domain/ComicSearch.response';
+import { ComicSearch, OptionsAlgolia } from '@/domain/ComicSearch.response';
 export class ComicSearchRepository {
     client: SearchClient;
     index: SearchIndex;
@@ -11,7 +11,7 @@ export class ComicSearchRepository {
     }
 
     async search(query: string, options?: OptionsAlgolia) {
-        const { hits } = await this.index.search<ComicSearchResponse>(query, options);
+        const { hits } = await this.index.search<ComicSearch>(query, options);
         return hits;
     }
 

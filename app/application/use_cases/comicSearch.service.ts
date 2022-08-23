@@ -5,7 +5,9 @@ export class ComicSearchService {
     constructor(private repository = comicSearchRepositoryInstance) {
 
     }
-    async search(query: string, options?: OptionsAlgolia) {
+    async search(query: string, options: OptionsAlgolia = {
+        hitsPerPage: 10,
+    }) {
         return await this.repository.search(query, options);
     }
 }
