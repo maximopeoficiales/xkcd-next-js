@@ -14,38 +14,40 @@ const Home = ({ latestComics }: MyProps) => {
   // console.log(latestComics);
 
   return (
-    <PageLayout>
+    <>
       <Head>
         <title>XKCD COMICS</title>
       </Head>
-      <h2 className="text-3xl font-bold text-center">Latest Comics</h2>
-      <section className="grid max-w-md grid-cols-1 gap-4 m-auto sm:grid-cols-2">
-        {
-          latestComics.map(comic => (
-            <Link key={comic.id} href={`/comic/${comic.id}`}
-            >
-              <a className="pb-4 mb-4">
-                <h3 className="text-sm font-bold text-center">{comic.title}</h3>
+      <PageLayout>
+        <h2 className="text-3xl font-bold text-center">Latest Comics</h2>
+        <section className="grid max-w-md grid-cols-1 gap-4 m-auto sm:grid-cols-2">
+          {
+            latestComics.map(comic => (
+              <Link key={comic.id} href={`/comic/${comic.id}`}
+              >
+                <a className="pb-4 mb-4">
+                  <h3 className="text-sm font-bold text-center">{comic.title}</h3>
 
-                <Image
-                  src={comic.img}
-                  alt={comic.alt}
-                  height={comic.height}
-                  width={comic.width}
-                // height={300}
-                // width={300}
-                // layout="intrinsic"
-                // objectFit='contain'
-                />
+                  <Image
+                    src={comic.img}
+                    alt={comic.alt}
+                    height={comic.height}
+                    width={comic.width}
+                  // height={300}
+                  // width={300}
+                  // layout="intrinsic"
+                  // objectFit='contain'
+                  />
 
-              </a>
+                </a>
 
-            </Link>
-          ))
+              </Link>
+            ))
 
-        }
-      </section>
-    </PageLayout>
+          }
+        </section>
+      </PageLayout>
+    </>
   )
 }
 

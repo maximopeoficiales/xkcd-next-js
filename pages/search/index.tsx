@@ -7,13 +7,17 @@ interface MyProps {
 }
 const SearchIndex = ({ query }: MyProps) => {
     return (
-        <PageLayout>
+        <>
             <Head>
                 <title>xkcd - Results for {query}</title>
                 <meta name="description" content={`Search results for ${query}`} />
             </Head>
-            <h1>Search: {query}</h1>
-        </PageLayout>
+
+            <PageLayout>
+                <h1>Search: {query}</h1>
+            </PageLayout>
+        </>
+
     )
 }
 

@@ -15,7 +15,7 @@ const PageLayout = ({ children, title = "I love Cats" }: MyProps) => {
                 {/* <link rel="icon" href="/cat.ico" /> */}
             </Head>
             <Header />
-            <main>
+            <main className="flex items-center justify-between max-w-xl p-4 m-auto">
                 {children}
             </main>
             <Footer />

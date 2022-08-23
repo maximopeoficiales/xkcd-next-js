@@ -5,7 +5,7 @@ interface MyProps {
 }
 const Header = ({ }: MyProps) => {
     return (
-        <header className="flex items-center justify-between p-4">
+        <header className="flex items-center justify-between max-w-xl p-4 m-auto">
             <div className="">
                 <h1 className="font-bold">Next <span className="font-light">XKCD</span></h1>
             </div>

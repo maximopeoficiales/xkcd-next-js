@@ -19,11 +19,11 @@ interface MyProps {
 
 const ComicId = ({ comic: { title, alt, img, height, width, safe_title }, hasNext, hasPrevious, prevId, nextId }: MyProps) => {
     return (
-        <PageLayout>
+        <>
             <Head>
                 <title>{safe_title}</title>
             </Head>
-            <section className="max-w-lg m-auto">
+            <PageLayout>
                 <h1 className="mb-4 text-xl font-bold text-center">{title}</h1>
                 <div className="max-w-xs m-auto mb-4">
 
@@ -53,8 +53,9 @@ const ComicId = ({ comic: { title, alt, img, height, width, safe_title }, hasNex
                         </Link>
                     }
                 </div>
-            </section >
-        </PageLayout >
+
+            </PageLayout >
+        </>
     )
 }
 
