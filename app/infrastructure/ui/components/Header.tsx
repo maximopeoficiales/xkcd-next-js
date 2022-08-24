@@ -43,13 +43,13 @@ const Header = ({ }: MyProps) => {
                         <div className="relative z-10">
                             {Boolean(results.length) && (
                                 <div className="z-50 w-full overflow-hidden bg-white border rounded-lg shadow-xl border-gray-50">
-                                    <li className="m-0" key={"all-results"}>
+                                    <ul className="m-0" key={"all-results"}>
                                         <Link href={`/search?q=${getValue()}`}>
                                             <a className="block px-2 py-1 overflow-hidden text-sm italic font-semibold text-gray-400 hover:bg-slate-200 text-ellipsis whitespace-nowrap" >
                                                 Ver {results.length} resultados
                                             </a>
                                         </Link>
-                                    </li>
+                                    </ul>
 
                                     {results.map((result) => (
                                         <Link href={`/comic/${result.id}`} key={result.id}>
