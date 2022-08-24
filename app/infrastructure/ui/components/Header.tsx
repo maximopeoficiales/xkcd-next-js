@@ -1,25 +1,23 @@
 import { ComicSearch } from "@/domain/ComicSearch.response";
 import { Container } from "@nextui-org/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 interface MyProps {
 }
 const Header = ({ }: MyProps) => {
     const [results, setResults] = useState<ComicSearch[]>([])
-    const [search, setSearch] = useState("")
-    const handleChange = async (e: any) => {
-        const value = e.target.value;
-        setSearch(value)
+    const searchInput = useRef<HTMLInputElement>(null)
+    const getValue = () => {
+        return searchInput.current?.value;
+    }
+    const handleChange = async () => {
+
+        const response = await fetch(`/api/search?q=${getValue()}`);
+        const results = await response.json();
+        setResults(results);
 
     }
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(`/api/search?q=${search}`);
-            const results = await response.json();
-            setResults(results);
-        })()
-    }, [search])
 
 
 
@@ -40,12 +38,13 @@ const Header = ({ }: MyProps) => {
                         <input type="search" placeholder="Search..."
                             className="px-4 py-1 text-xs border border-gray-400 rounded-3xl"
                             onChange={handleChange}
+                            ref={searchInput}
                         />
                         <div className="relative z-10">
                             {Boolean(results.length) && (
                                 <div className="z-50 w-full overflow-hidden bg-white border rounded-lg shadow-xl border-gray-50">
                                     <li className="m-0" key={"all-results"}>
-                                        <Link href={`/search?q=${search}`}>
+                                        <Link href={`/search?q=${getValue()}`}>
                                             <a className="block px-2 py-1 overflow-hidden text-sm italic font-semibold text-gray-400 hover:bg-slate-200 text-ellipsis whitespace-nowrap" >
                                                 Ver {results.length} resultados
                                             </a>
