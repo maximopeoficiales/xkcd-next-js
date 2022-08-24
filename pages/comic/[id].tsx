@@ -24,34 +24,42 @@ const ComicId = ({ comic: { title, alt, img, height, width, safe_title }, hasNex
                 <title>{safe_title}</title>
             </Head>
             <PageLayout>
-                <h1 className="mb-4 text-xl font-bold text-center">{title}</h1>
-                <div className="max-w-xs m-auto mb-4">
+                <div className="">
+                    <h1 className="mb-4 text-xl font-bold text-center">{title}</h1>
+                    <div className="flex flex-col justify-center p-4 border shadow-xl rounded-xl" >
+                        <Image
+                            src={img}
+                            alt={alt}
+                            width={width}
+                            height={height}
+                        />
 
-                    <Image
-                        layout="responsive"
-                        src={img}
-                        alt={alt}
-                        height={height}
-                        width={width}
-                    />
-                </div>
-                <p>{alt}</p>
-                <div className="flex justify-between font-bold">
-                    {
-                        hasPrevious && <Link href={`/comic/${prevId}`}>
-                            <a className="text-gray-600">
-                                🤛  Previous
-                            </a>
-                        </Link>
-                    }
+                        <div className="p-4">
+                            <h5 className="text-xl font-bold text-gray-900">
+                                {title}
+                            </h5>
+                            <p className="mt-2 text-gray-500">
+                                {alt}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex justify-between mt-4 font-bold">
+                        {
+                            hasPrevious && <Link href={`/comic/${prevId}`}>
+                                <a className="text-gray-600">
+                                    🤛  Previous
+                                </a>
+                            </Link>
+                        }
 
-                    {
-                        hasNext && <Link href={`/comic/${nextId}`}>
-                            <a className="text-gray-600">
-                                Next 🤜
-                            </a>
-                        </Link>
-                    }
+                        {
+                            hasNext && <Link href={`/comic/${nextId}`}>
+                                <a className="text-gray-600">
+                                    Next 🤜
+                                </a>
+                            </Link>
+                        }
+                    </div>
                 </div>
 
             </PageLayout >
