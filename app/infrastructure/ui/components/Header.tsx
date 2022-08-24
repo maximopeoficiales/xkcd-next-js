@@ -1,13 +1,19 @@
 import { ComicSearch } from "@/domain/ComicSearch.response";
 import { Container } from "@nextui-org/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 
 interface MyProps {
 }
 const Header = ({ }: MyProps) => {
+    const { locales, locale } = useRouter()
+    console.log({locales,locale});
+    
     const [results, setResults] = useState<ComicSearch[]>([])
     const searchInput = useRef<HTMLInputElement>(null)
+    const restOfLocales = locales!.find(e => e !== locale);
+
     const getValue = () => {
         return searchInput.current?.value;
     }
@@ -33,7 +39,8 @@ const Header = ({ }: MyProps) => {
                     responsive
                     style={{ listStyle: "none" }}
                 >
-                    <li><Link href={"/"}>Home</Link></li>
+                    <li><Link href={"/"} className="text-sm font-semibold">Home</Link></li>
+                    <li><Link href={"/"} locale={restOfLocales} className="text-sm font-semibold">{restOfLocales}</Link></li>
                     <li>
                         <input type="search" placeholder="Search..."
                             className="px-4 py-1 text-xs border border-gray-400 rounded-3xl"
