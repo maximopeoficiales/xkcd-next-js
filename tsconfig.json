@@ -17,7 +17,9 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@/translations/*": ["./app/infrastructure/translations/*"],
       "@/ui/*": ["./app/infrastructure/ui/*"],
+      "@/externalServices/*": ["./app/infrastructure/externalServices/*"],
       "@/config": ["./config.ts"],
       "@/domain/*": ["./app/domain/*"],
       "@/services/*": ["./app/application/use_cases/*"],

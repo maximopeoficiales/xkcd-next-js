@@ -1,5 +1,5 @@
 import { OptionsAlgolia } from "@/domain/ComicSearch.response";
-import { comicSearchRepositoryInstance } from "app/infrastructure/externalServices/ComicSearch.repository";
+import { comicSearchRepositoryInstance } from "@/externalServices/ComicSearch.repository";
 
 export class ComicSearchService {
     constructor(private repository = comicSearchRepositoryInstance) {

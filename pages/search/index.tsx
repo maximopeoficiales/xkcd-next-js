@@ -1,6 +1,7 @@
 import { ComicSearch } from "@/domain/ComicSearch.response";
 import { comicSearchServiceInstance } from "@/services/comicSearch.service";
 import PageLayout from "@/ui/components/PageLayout";
+import { useI18N } from "@/ui/context/i18n";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -11,6 +12,8 @@ interface MyProps {
     results: ComicSearch[],
 }
 const SearchIndex = ({ query, results }: MyProps) => {
+    const { t } = useI18N();
+
     return (
         <>
             <Head>
@@ -20,7 +23,8 @@ const SearchIndex = ({ query, results }: MyProps) => {
 
             <PageLayout>
                 <div className="">
-                    <h1>Search: {query}</h1>
+                    <h1>{t("SEARCH_RESULTS_TITLE", results.length, query)}</h1>
+
                     <div className="grid grid-cols-2 gap-4">
                         {results.map(e => (
                             <Link href={`comic/${e.id}`} key={e.id}>
@@ -28,7 +32,7 @@ const SearchIndex = ({ query, results }: MyProps) => {
                                     <div className="p-4 bg-gray-900">
                                         <div className="flex items-center">
                                             <h5 className="text-sm text-white">{e.title}</h5>
-                                          
+
                                         </div>
 
                                         <p className="mt-1 text-xs text-gray-300">{e.alt}</p>
