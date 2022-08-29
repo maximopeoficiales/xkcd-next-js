@@ -12,10 +12,10 @@ export class ComicSearchRepository {
 
     async search(query: string, options?: OptionsAlgolia) {
         if (this.CACHE[query]) {
-            console.log("en cache", query);
+            // console.log("en cache", query);
             return this.CACHE[query];
         }
-        console.log("buscando", query);
+        // console.log("buscando", query);
 
         const { hits } = await this.index.search<ComicSearch>(query, options);
         this.CACHE[query] = hits;
