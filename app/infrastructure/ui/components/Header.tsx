@@ -8,7 +8,6 @@ interface MyProps {
 }
 const Header = ({ }: MyProps) => {
     const { locales, locale } = useRouter()
-    console.log({locales,locale});
     
     const [results, setResults] = useState<ComicSearch[]>([])
     const searchInput = useRef<HTMLInputElement>(null)

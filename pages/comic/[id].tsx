@@ -8,6 +8,7 @@ import { Comic } from "@/domain/Comic";
 
 import fs from "fs/promises";
 import { basename } from "path";
+import { Paths } from "@/domain/next";
 
 interface MyProps {
     comic: Comic;
@@ -70,14 +71,18 @@ const ComicId = ({ comic: { title, alt, img, height, width, safe_title }, hasNex
 export default ComicId;
 
 // le indica que debe puede renderizar y el usuario pone otro id lo manda a un fallback
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
     const files = await fs.readdir("./comics");
     // leemos todas los comics y lo cargamos a las rutas que se renderizaran en el build
 
-    const paths = files.map(file => {
-        const id = basename(file, ".json");
-        return { params: { id } }
+    let paths: Paths = [];
+    locales!.forEach(locale => {
+        paths = paths.concat(files.map(file => {
+            const id = basename(file, ".json");
+            return { params: { id }, locale }
+        }));
     });
+
     return {
         paths,
         fallback: false
